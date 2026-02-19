@@ -15,6 +15,14 @@ const currentYear = document.getElementById("current-year");
 const simulatorForm = document.getElementById("search-simulator");
 const simFeedback = document.getElementById("sim-feedback");
 const simResults = document.getElementById("sim-results");
+const modeButtons = document.querySelectorAll(".mode-chip");
+const modeGroups = {
+  vehiculo: document.getElementById("group-vehiculo"),
+  neumatico: document.getElementById("group-neumatico"),
+  llanta: document.getElementById("group-llanta")
+};
+
+let activeMode = "vehiculo";
 
 const tireSamples = [
   { medida: "265/70R16", tipo: "AT", uso: "Camioneta / 4x4" },
@@ -68,16 +76,37 @@ if (quoteForm) {
   });
 }
 
-const renderResults = (items, type) => {
+const switchMode = (mode) => {
+  activeMode = mode;
+  modeButtons.forEach((button) => {
+    const selected = button.dataset.mode === mode;
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-selected", selected ? "true" : "false");
+  });
+
+  Object.entries(modeGroups).forEach(([groupMode, element]) => {
+    if (!element) return;
+    element.classList.toggle("hidden", groupMode !== mode);
+  });
+
+  simResults.innerHTML = "";
+  simFeedback.textContent = "";
+};
+
+modeButtons.forEach((button) => {
+  button.addEventListener("click", () => switchMode(button.dataset.mode));
+});
+
+const renderResults = (items, mode) => {
   if (!simResults) return;
 
   if (!items.length) {
     simResults.innerHTML =
-      "<h3>Sin coincidencias en demo</h3><p>No encontramos resultados exactos en la muestra. Te recomendamos cotizar por WhatsApp para validar stock real.</p>";
+      "<h3>Sin coincidencias en demo</h3><p>No encontramos resultados exactos en la muestra. Te recomendamos cotizar por WhatsApp para validar stock real y alternativas equivalentes.</p>";
     return;
   }
 
-  if (type === "neumatico") {
+  if (mode === "neumatico") {
     simResults.innerHTML = `
       <h3>Coincidencias referenciales de neumáticos</h3>
       <ul>
@@ -92,15 +121,27 @@ const renderResults = (items, type) => {
     return;
   }
 
+  if (mode === "llanta") {
+    simResults.innerHTML = `
+      <h3>Coincidencias referenciales de llantas</h3>
+      <ul>
+        ${items
+          .map(
+            (item) =>
+              `<li><strong>Aro ${item.aro}</strong> · PCD ${item.pcd} · ${item.ancho}" · ${item.material}</li>`
+          )
+          .join("")}
+      </ul>
+    `;
+    return;
+  }
+
   simResults.innerHTML = `
-    <h3>Coincidencias referenciales de llantas</h3>
+    <h3>Recomendación inicial por vehículo</h3>
     <ul>
-      ${items
-        .map(
-          (item) =>
-            `<li><strong>Aro ${item.aro}</strong> · PCD ${item.pcd} · ${item.ancho}\" · ${item.material}</li>`
-        )
-        .join("")}
+      <li>Opciones sugeridas de neumáticos para tu configuración.</li>
+      <li>Alternativas HT/AT según uso urbano o mixto.</li>
+      <li>Validación final con asesor técnico antes de compra.</li>
     </ul>
   `;
 };
@@ -109,47 +150,73 @@ if (simulatorForm) {
   simulatorForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const type = document.getElementById("sim-type").value.trim().toLowerCase();
-    const width = document.getElementById("sim-width").value.trim();
-    const profile = document.getElementById("sim-profile").value.trim();
-    const diameter = document.getElementById("sim-diameter").value.trim();
-    const pcd = document.getElementById("sim-pcd").value.trim().toLowerCase();
-    const rimWidth = document.getElementById("sim-rim-width").value.trim();
-
-    if (!type || !width || !diameter) {
-      simFeedback.textContent = "Completa tipo, ancho/aro y diámetro para buscar.";
-      simFeedback.style.color = "#d90429";
-      return;
-    }
-
     let matches = [];
     let summary = "";
 
-    if (type === "neumatico") {
-      const expected = `${width}/${profile}R${diameter}`.toLowerCase();
-      matches = tireSamples.filter((item) => {
-        const normalized = item.medida.toLowerCase();
-        if (profile) {
-          return normalized === expected;
-        }
-        return normalized.includes(`${width.toLowerCase()}/`) && normalized.endsWith(`r${diameter.toLowerCase()}`);
-      });
-      summary = `Neumático buscado: ${profile ? `${width}/${profile}R${diameter}` : `${width}/_R${diameter}`}`;
+    if (activeMode === "vehiculo") {
+      const year = document.getElementById("sim-year").value.trim();
+      const brand = document.getElementById("sim-brand").value.trim();
+      const model = document.getElementById("sim-model").value.trim();
+      const trim = document.getElementById("sim-trim").value.trim();
+
+      if (!year || !brand || !model) {
+        simFeedback.textContent = "Completa año, marca y modelo para buscar por vehículo.";
+        simFeedback.style.color = "#d90429";
+        return;
+      }
+
+      summary = `Vehículo ${year} ${brand} ${model}${trim ? ` ${trim}` : ""}`;
+      matches = [{ ok: true }];
     }
 
-    if (type === "llanta") {
-      matches = rimSamples.filter((item) => {
-        const aroOk = item.aro === width || item.aro === diameter;
-        const pcdOk = pcd ? item.pcd.toLowerCase() === pcd : true;
-        const widthOk = rimWidth ? item.ancho === rimWidth : true;
-        return aroOk && pcdOk && widthOk;
+    if (activeMode === "neumatico") {
+      const width = document.getElementById("sim-width").value.trim();
+      const profile = document.getElementById("sim-profile").value.trim();
+      const diameter = document.getElementById("sim-diameter").value.trim();
+      const terrain = document.getElementById("sim-terrain").value.trim().toUpperCase();
+
+      if (!width || !profile || !diameter) {
+        simFeedback.textContent = "Completa ancho, perfil y aro para buscar neumáticos.";
+        simFeedback.style.color = "#d90429";
+        return;
+      }
+
+      const expected = `${width}/${profile}R${diameter}`.toLowerCase();
+      matches = tireSamples.filter((item) => {
+        const tireOk = item.medida.toLowerCase() === expected;
+        const terrainOk = terrain ? item.tipo === terrain : true;
+        return tireOk && terrainOk;
       });
-      summary = `Llanta buscada: Aro ${width || diameter}${pcd ? ` · ${pcd}` : ""}${
-        rimWidth ? ` · ${rimWidth}\"` : ""
+
+      summary = `Neumático ${width}/${profile}R${diameter}${terrain ? ` ${terrain}` : ""}`;
+    }
+
+    if (activeMode === "llanta") {
+      const rimDiameter = document.getElementById("sim-rim-diameter").value.trim();
+      const pcd = document.getElementById("sim-pcd").value.trim().toLowerCase();
+      const rimWidth = document.getElementById("sim-rim-width").value.trim();
+      const material = document.getElementById("sim-material").value.trim();
+
+      if (!rimDiameter || !pcd) {
+        simFeedback.textContent = "Completa aro y PCD para buscar llantas.";
+        simFeedback.style.color = "#d90429";
+        return;
+      }
+
+      matches = rimSamples.filter((item) => {
+        const aroOk = item.aro === rimDiameter;
+        const pcdOk = item.pcd.toLowerCase() === pcd;
+        const widthOk = rimWidth ? item.ancho === rimWidth : true;
+        const materialOk = material ? item.material === material : true;
+        return aroOk && pcdOk && widthOk && materialOk;
+      });
+
+      summary = `Llanta Aro ${rimDiameter} · ${pcd}${rimWidth ? ` · ${rimWidth}"` : ""}${
+        material ? ` · ${material}` : ""
       }`;
     }
 
-    simFeedback.textContent = `${summary}. Resultados demo generados correctamente.`;
+    simFeedback.textContent = `${summary}. Resultado demo generado.`;
     simFeedback.style.color = "#0f5132";
 
     if (waSimulator) {
@@ -158,6 +225,6 @@ if (simulatorForm) {
       );
     }
 
-    renderResults(matches, type);
+    renderResults(matches, activeMode);
   });
 }

@@ -6,24 +6,23 @@ Sitio web corporativo en español (Chile) para **Central Equipamientos**, orient
 
 - `index.html`: estructura semántica del sitio.
 - `css/styles.css`: estilos visuales, grilla responsive y paleta corporativa.
-- `js/main.js`: interacciones básicas, enlaces WhatsApp configurables, simulador de búsqueda y validación de formulario.
+- `js/main.js`: interacciones, enlaces WhatsApp configurables, buscador demo y validación de formulario.
 - `assets/`: carpeta reservada para imágenes/logotipos locales futuras.
 - `.github/workflows/deploy-pages.yml`: despliegue automático en GitHub Pages.
 
 ## Características incluidas
 
-- Diseño sobrio y profesional con estética automotriz.
+- Diseño sobrio, moderno y tecnológico con enfoque automotriz.
 - Hero principal con llamados a la acción.
-- Secciones de productos, simulador de búsqueda, servicios, soluciones para empresas, garantía, sobre nosotros y contacto.
-- Simulador demo para medidas de neumáticos y llantas (ejemplos tipo `265/70R16` y `Aro 15 5x139 8"`).
+- **Buscador rápido en 3 modos**:
+  - Por vehículo (año, marca, modelo, versión).
+  - Por neumático (ancho, perfil, aro y uso AT/MT/HT).
+  - Por llanta (aro, PCD, ancho y material).
+- Resultados demo preparados para conectar inventario real futuro.
+- Secciones de productos, servicios, soluciones para empresas, garantía, sobre nosotros y contacto.
 - Formulario de cotización con campos solicitados.
 - Botón flotante de WhatsApp global.
 - SEO básico: title, description y etiquetas Open Graph.
-- Arquitectura preparada para escalar a:
-  - Catálogo dinámico vía JSON.
-  - Integración e-commerce.
-  - Módulo dedicado para "Central Equipamientos Empresas".
-  - Nuevas líneas de equipamiento automotriz.
 
 ## Configuración rápida
 
@@ -48,5 +47,5 @@ Este repositorio quedó preparado para publicar automáticamente en GitHub Pages
 ## Notas
 
 - Las imágenes están referenciadas desde Unsplash para prototipado.
-- El simulador usa una base demo en JS para futura conexión a inventario real.
+- El buscador usa una base demo en JS para futura conexión a inventario real.
 - El formulario está preparado para integración con backend/API de cotizaciones.
