@@ -110,12 +110,12 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-size: clamp(2rem, 4vw, 3.8rem);
   margin-bottom: 0.6rem;
 }
 
 .subtitle {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   margin-bottom: 1.3rem;
 }
 
@@ -341,13 +341,81 @@ h1 {
 }
 
 @media (max-width: 700px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .hero,
+  .hero-overlay {
+    min-height: auto;
+  }
+
+  .hero-content {
+    padding: 4.8rem 0 2rem;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-points {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-points span {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
   .nav-links {
-    flex-wrap: wrap;
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    gap: 0.7rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .nav-links li {
+    flex: 0 0 auto;
+  }
+
+  .mode-switch {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .mode-chip {
+    width: 100%;
+    text-align: center;
+    border-radius: 0.7rem;
   }
 
   .contact-form,
   .simulator-form,
   .field-group {
     grid-template-columns: 1fr;
+  }
+
+  .sim-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .sim-actions .btn,
+  #wa-contact,
+  .contact-form button {
+    width: 100%;
+  }
+
+  .floating-wa {
+    right: 0.7rem;
+    bottom: 0.7rem;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
   }
 }
