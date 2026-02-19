@@ -8,6 +8,7 @@ Sitio web corporativo en español (Chile) para **Central Equipamientos**, orient
 - `css/styles.css`: estilos visuales, grilla responsive y paleta corporativa.
 - `js/main.js`: interacciones básicas, enlaces WhatsApp configurables y validación de formulario.
 - `assets/`: carpeta reservada para imágenes/logotipos locales futuras.
+- `.github/workflows/deploy-pages.yml`: despliegue automático en GitHub Pages.
 
 ## Características incluidas
 
@@ -31,6 +32,17 @@ Sitio web corporativo en español (Chile) para **Central Equipamientos**, orient
 ```js
 const whatsappNumber = "56912345678";
 ```
+
+## Publicar en GitHub Pages (listo para usar)
+
+Este repositorio quedó preparado para publicar automáticamente en GitHub Pages.
+
+1. Sube estos cambios a la rama `main`.
+2. En GitHub, entra a **Settings → Pages**.
+3. En **Source**, selecciona **GitHub Actions**.
+4. Al hacer push a `main`, el workflow `Deploy static site to GitHub Pages` publicará el sitio.
+
+> URL final esperada: `https://<tu-usuario>.github.io/<tu-repo>/`
 
 ## Notas
 
