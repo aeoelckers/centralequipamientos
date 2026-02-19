@@ -34,6 +34,7 @@
         <nav aria-label="Principal">
           <ul class="nav-links">
             <li><a href="#productos">Productos</a></li>
+            <li><a href="#simulador">Simulador</a></li>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#empresas">Empresas</a></li>
             <li><a href="#contacto">Contacto</a></li>
@@ -106,7 +107,59 @@
         </div>
       </section>
 
-      <section class="section section-alt" id="servicios">
+      <section class="section section-alt" id="simulador">
+        <div class="container">
+          <h2>Simulador de búsqueda (demo)</h2>
+          <p class="section-intro">
+            Ingresa medidas de referencia para visualizar coincidencias preliminares. Este simulador
+            está preparado para conectar inventario real más adelante.
+          </p>
+
+          <form id="search-simulator" class="simulator-form" novalidate>
+            <label>
+              Tipo de producto
+              <select name="tipo" id="sim-type" required>
+                <option value="">Seleccionar...</option>
+                <option value="neumatico">Neumático</option>
+                <option value="llanta">Llanta</option>
+              </select>
+            </label>
+
+            <label>
+              Ancho / aro (ej: 265 en neumático o 15 en llanta)
+              <input type="text" id="sim-width" name="ancho" placeholder="Ej: 265 o 15" required />
+            </label>
+
+            <label>
+              Perfil (solo neumático)
+              <input type="text" id="sim-profile" name="perfil" placeholder="Ej: 70" />
+            </label>
+
+            <label>
+              Diámetro (ej: 16)
+              <input type="text" id="sim-diameter" name="diametro" placeholder="Ej: 16" required />
+            </label>
+
+            <label>
+              PCD / apernadura (solo llanta)
+              <input type="text" id="sim-pcd" name="pcd" placeholder="Ej: 5x139" />
+            </label>
+
+            <label>
+              Ancho de llanta en pulgadas (solo llanta)
+              <input type="text" id="sim-rim-width" name="anchoLlanta" placeholder="Ej: 8" />
+            </label>
+
+            <button type="submit" class="btn btn-primary">Buscar coincidencias</button>
+            <a href="#" id="wa-simulator" class="btn btn-secondary">Consultar esta medida por WhatsApp</a>
+            <p id="sim-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+          </form>
+
+          <div id="sim-results" class="sim-results" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section" id="servicios">
         <div class="container">
           <h2>Servicios</h2>
           <div class="services-grid">

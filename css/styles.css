@@ -118,7 +118,8 @@ h1 {
 }
 
 .hero-actions,
-.contact-form {
+.contact-form,
+.simulator-form {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
@@ -174,7 +175,8 @@ h1 {
 
 .product-block,
 .services-grid article,
-.panel {
+.panel,
+.sim-results {
   background-color: var(--color-white);
   border: 1px solid #e5e7eb;
   border-radius: 0.9rem;
@@ -193,14 +195,16 @@ h1 {
   gap: 1.4rem;
 }
 
-.contact-form {
+.contact-form,
+.simulator-form {
   margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(220px, 1fr));
   gap: 0.9rem;
 }
 
-.contact-form label {
+.contact-form label,
+.simulator-form label {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -209,7 +213,9 @@ h1 {
 }
 
 .contact-form input,
-.contact-form textarea {
+.contact-form textarea,
+.simulator-form input,
+.simulator-form select {
   border: 1px solid #c9d0db;
   border-radius: 0.5rem;
   padding: 0.65rem 0.75rem;
@@ -223,9 +229,24 @@ h1 {
   grid-column: 1 / -1;
 }
 
+.simulator-form button,
+#wa-simulator,
+#sim-feedback {
+  grid-column: 1 / -1;
+}
+
 .form-feedback {
   margin: 0;
   font-weight: 600;
+}
+
+.sim-results {
+  margin-top: 1rem;
+}
+
+.sim-results ul {
+  margin: 0;
+  padding-left: 1rem;
 }
 
 .site-footer {
@@ -271,7 +292,8 @@ h1 {
     flex-wrap: wrap;
   }
 
-  .contact-form {
+  .contact-form,
+  .simulator-form {
     grid-template-columns: 1fr;
   }
 }

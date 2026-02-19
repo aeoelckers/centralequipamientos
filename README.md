@@ -6,7 +6,7 @@ Sitio web corporativo en español (Chile) para **Central Equipamientos**, orient
 
 - `index.html`: estructura semántica del sitio.
 - `css/styles.css`: estilos visuales, grilla responsive y paleta corporativa.
-- `js/main.js`: interacciones básicas, enlaces WhatsApp configurables y validación de formulario.
+- `js/main.js`: interacciones básicas, enlaces WhatsApp configurables, simulador de búsqueda y validación de formulario.
 - `assets/`: carpeta reservada para imágenes/logotipos locales futuras.
 - `.github/workflows/deploy-pages.yml`: despliegue automático en GitHub Pages.
 
@@ -14,7 +14,8 @@ Sitio web corporativo en español (Chile) para **Central Equipamientos**, orient
 
 - Diseño sobrio y profesional con estética automotriz.
 - Hero principal con llamados a la acción.
-- Secciones de productos, servicios, soluciones para empresas, garantía, sobre nosotros y contacto.
+- Secciones de productos, simulador de búsqueda, servicios, soluciones para empresas, garantía, sobre nosotros y contacto.
+- Simulador demo para medidas de neumáticos y llantas (ejemplos tipo `265/70R16` y `Aro 15 5x139 8"`).
 - Formulario de cotización con campos solicitados.
 - Botón flotante de WhatsApp global.
 - SEO básico: title, description y etiquetas Open Graph.
@@ -30,7 +31,7 @@ Sitio web corporativo en español (Chile) para **Central Equipamientos**, orient
 2. Editar el número de WhatsApp en `js/main.js`:
 
 ```js
-const whatsappNumber = "56912345678";
+const whatsappNumber = "56973392197";
 ```
 
 ## Publicar en GitHub Pages (listo para usar)
@@ -47,4 +48,5 @@ Este repositorio quedó preparado para publicar automáticamente en GitHub Pages
 ## Notas
 
 - Las imágenes están referenciadas desde Unsplash para prototipado.
+- El simulador usa una base demo en JS para futura conexión a inventario real.
 - El formulario está preparado para integración con backend/API de cotizaciones.
