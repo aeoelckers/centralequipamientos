@@ -15,7 +15,7 @@ Sitio web corporativo en español (Chile) para **Central Equipamientos**, orient
 
 - Diseño sobrio, moderno y tecnológico con enfoque automotriz.
 - Hero con imagen local + panel flotante de “Cotiza en 3 pasos”.
-- Barra de búsqueda rápida bajo el menú superior (tipo neumático/llanta/patente) para cotizar con menos clics.
+- Barra de búsqueda rápida bajo el menú superior (tipo neumático/llanta/patente) para cotizar con menos clics, optimizada para celular.
 - **Buscador rápido en 4 modos**:
   - Por vehículo.
   - Por neumático.

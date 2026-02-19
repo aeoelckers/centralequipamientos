@@ -1,27 +1,44 @@
-<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Camioneta en carretera">
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Camioneta blanca en carretera">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0c1320"/>
-      <stop offset="60%" stop-color="#1e2b3f"/>
-      <stop offset="100%" stop-color="#4f647f"/>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#27436b"/>
+      <stop offset="45%" stop-color="#345987"/>
+      <stop offset="100%" stop-color="#8fb0d6"/>
     </linearGradient>
     <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#20242c"/>
-      <stop offset="100%" stop-color="#0f1116"/>
+      <stop offset="0%" stop-color="#2b313c"/>
+      <stop offset="100%" stop-color="#14181f"/>
+    </linearGradient>
+    <linearGradient id="car" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fbff"/>
+      <stop offset="100%" stop-color="#d9e4f3"/>
     </linearGradient>
   </defs>
-  <rect width="1600" height="900" fill="url(#bg)"/>
-  <polygon points="0,620 1600,520 1600,900 0,900" fill="url(#road)"/>
-  <line x1="730" y1="690" x2="890" y2="675" stroke="#f3f4f6" stroke-width="10" stroke-linecap="round"/>
-  <g transform="translate(420 450)">
-    <rect x="120" y="140" width="650" height="120" rx="26" fill="#13161d"/>
-    <path d="M220 140 L340 70 H560 L680 140 Z" fill="#1b2230"/>
-    <rect x="360" y="90" width="170" height="50" rx="8" fill="#2f3d57"/>
-    <circle cx="250" cy="280" r="62" fill="#0a0b0f"/>
-    <circle cx="250" cy="280" r="28" fill="#8ea2bf"/>
-    <circle cx="650" cy="280" r="62" fill="#0a0b0f"/>
-    <circle cx="650" cy="280" r="28" fill="#8ea2bf"/>
-    <rect x="735" y="170" width="22" height="28" rx="4" fill="#0a84ff"/>
-    <rect x="132" y="170" width="22" height="28" rx="4" fill="#d90429"/>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+
+  <g opacity="0.3" fill="#1e3556">
+    <path d="M0 490 L210 420 L390 470 L580 410 L760 470 L980 395 L1230 470 L1600 420 L1600 630 L0 630 Z"/>
+  </g>
+
+  <polygon points="0,620 1600,560 1600,900 0,900" fill="url(#road)"/>
+  <line x1="120" y1="735" x2="340" y2="720" stroke="#f1f5f9" stroke-width="11" stroke-linecap="round"/>
+  <line x1="640" y1="700" x2="880" y2="685" stroke="#f1f5f9" stroke-width="11" stroke-linecap="round"/>
+  <line x1="1180" y1="665" x2="1420" y2="650" stroke="#f1f5f9" stroke-width="11" stroke-linecap="round"/>
+
+  <g transform="translate(390 360)">
+    <rect x="110" y="180" width="760" height="145" rx="30" fill="url(#car)"/>
+    <path d="M220 180 L360 95 H610 L760 180 Z" fill="url(#car)"/>
+    <rect x="400" y="110" width="190" height="62" rx="10" fill="#7f9cc0"/>
+
+    <rect x="145" y="220" width="90" height="24" rx="6" fill="#0a84ff"/>
+    <rect x="745" y="220" width="90" height="24" rx="6" fill="#d90429"/>
+
+    <circle cx="265" cy="352" r="76" fill="#0f1116"/>
+    <circle cx="265" cy="352" r="34" fill="#8aa0bd"/>
+    <circle cx="730" cy="352" r="76" fill="#0f1116"/>
+    <circle cx="730" cy="352" r="34" fill="#8aa0bd"/>
+
+    <rect x="80" y="300" width="830" height="10" fill="#24344b" opacity="0.35"/>
   </g>
 </svg>
