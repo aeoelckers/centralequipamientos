@@ -14,10 +14,7 @@
       content="Soluciones en neumáticos y llantas para cada camino. Atención a empresas y clientes particulares en Chile."
     />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:image"
-      content="https://images.unsplash.com/photo-1511527844068-006b95d162c2?auto=format&fit=crop&w=1600&q=80"
-    />
+    <meta property="og:image" content="assets/hero-camioneta.svg" />
     <meta property="og:locale" content="es_CL" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,19 +43,33 @@
     <main>
       <section class="hero" id="inicio" aria-label="Portada">
         <div class="hero-overlay">
-          <div class="container hero-content">
-            <p class="eyebrow">Empresa automotriz en Chile</p>
-            <h1>Central Equipamientos</h1>
-            <p class="subtitle">Soluciones en neumáticos y llantas para cada camino.</p>
-            <div class="hero-actions">
-              <a href="#simulador" class="btn btn-primary">Cotizar ahora</a>
-              <a href="#productos" class="btn btn-secondary">Ver catálogo</a>
+          <div class="container hero-layout">
+            <div class="hero-content">
+              <p class="eyebrow">Empresa automotriz en Chile</p>
+              <h1>Central Equipamientos</h1>
+              <p class="subtitle">Soluciones en neumáticos y llantas para cada camino.</p>
+              <div class="hero-actions">
+                <a href="#simulador" class="btn btn-primary">Cotizar ahora</a>
+                <a href="#productos" class="btn btn-secondary">Ver catálogo</a>
+              </div>
+              <div class="hero-points">
+                <span>Atención empresas y flotas</span>
+                <span>Asesoría por medida</span>
+                <span>Montaje y balanceo</span>
+              </div>
             </div>
-            <div class="hero-points">
-              <span>Atención empresas y flotas</span>
-              <span>Asesoría por medida</span>
-              <span>Montaje y balanceo</span>
-            </div>
+
+            <aside class="hero-quick-card" aria-label="Cotiza en 3 pasos">
+              <p class="quick-kicker">Más rápido</p>
+              <h3>Cotiza en 3 pasos</h3>
+              <ol>
+                <li>Elige búsqueda por vehículo, medida, llanta o patente.</li>
+                <li>Ingresa los datos mínimos.</li>
+                <li>Envía a WhatsApp y recibe opciones disponibles.</li>
+              </ol>
+              <a href="#simulador" class="btn btn-primary">Comenzar cotización</a>
+              <a href="#" id="wa-patente-hero" class="btn btn-secondary">Cotiza con tu patente</a>
+            </aside>
           </div>
         </div>
       </section>
@@ -67,14 +78,15 @@
         <div class="container">
           <h2>Busca y cotiza en 3 pasos</h2>
           <p class="section-intro">
-            Inspirado en los flujos más usados en sitios internacionales de neumáticos: buscar por
-            <strong>vehículo</strong>, por <strong>medida</strong> o por <strong>llanta</strong>.
+            Flujo de cotización de pocos clics: por <strong>vehículo</strong>, por <strong>medida</strong>,
+            por <strong>llanta</strong> o por <strong>patente chilena</strong>.
           </p>
 
           <div class="mode-switch" role="tablist" aria-label="Modo de búsqueda">
             <button class="mode-chip active" data-mode="vehiculo" role="tab" aria-selected="true">Por vehículo</button>
             <button class="mode-chip" data-mode="neumatico" role="tab" aria-selected="false">Por neumático</button>
             <button class="mode-chip" data-mode="llanta" role="tab" aria-selected="false">Por llanta</button>
+            <button class="mode-chip" data-mode="patente" role="tab" aria-selected="false">Cotiza con tu patente</button>
           </div>
 
           <form id="search-simulator" class="simulator-form" novalidate>
@@ -147,6 +159,23 @@
                   <option value="">Todos</option>
                   <option>Aleación</option>
                   <option>Acero</option>
+                </select>
+              </label>
+            </div>
+
+            <div id="group-patente" class="field-group hidden">
+              <label>
+                Patente (Chile)
+                <input type="text" id="sim-plate" placeholder="Ej: ABCD12 o AB1234" />
+              </label>
+              <label>
+                Tipo de uso
+                <select id="sim-plate-use">
+                  <option value="">Uso normal</option>
+                  <option>Ciudad</option>
+                  <option>Carretera</option>
+                  <option>Mixto</option>
+                  <option>Trabajo / carga</option>
                 </select>
               </label>
             </div>

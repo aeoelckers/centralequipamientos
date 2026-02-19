@@ -7,6 +7,7 @@ const buildWhatsAppUrl = (message) =>
 const floatingWa = document.getElementById("floating-wa");
 const waContact = document.getElementById("wa-contact");
 const waSimulator = document.getElementById("wa-simulator");
+const waPatenteHero = document.getElementById("wa-patente-hero");
 const categoryButtons = document.querySelectorAll(".wa-category");
 const quoteForm = document.getElementById("quote-form");
 const formFeedback = document.getElementById("form-feedback");
@@ -19,7 +20,8 @@ const modeButtons = document.querySelectorAll(".mode-chip");
 const modeGroups = {
   vehiculo: document.getElementById("group-vehiculo"),
   neumatico: document.getElementById("group-neumatico"),
-  llanta: document.getElementById("group-llanta")
+  llanta: document.getElementById("group-llanta"),
+  patente: document.getElementById("group-patente")
 };
 
 let activeMode = "vehiculo";
@@ -38,21 +40,17 @@ const rimSamples = [
   { aro: "18", pcd: "5x114.3", ancho: "8", material: "Aleación" }
 ];
 
-if (currentYear) {
-  currentYear.textContent = new Date().getFullYear();
-}
+const plateSamples = {
+  ABCD12: { vehiculo: "Toyota Hilux 4x4", medida: "265/65R17", uso: "Trabajo / carga" },
+  AB1234: { vehiculo: "Mitsubishi L200", medida: "265/70R16", uso: "Mixto" },
+  CD4567: { vehiculo: "Nissan X-Trail", medida: "225/65R17", uso: "Ciudad" }
+};
 
-if (floatingWa) {
-  floatingWa.href = buildWhatsAppUrl("Hola, necesito una cotización con Central Equipamientos.");
-}
-
-if (waContact) {
-  waContact.href = buildWhatsAppUrl("Hola, quiero cotizar neumáticos o llantas.");
-}
-
-if (waSimulator) {
-  waSimulator.href = buildWhatsAppUrl("Hola, quiero consultar una medida específica.");
-}
+if (currentYear) currentYear.textContent = new Date().getFullYear();
+if (floatingWa) floatingWa.href = buildWhatsAppUrl("Hola, necesito una cotización con Central Equipamientos.");
+if (waContact) waContact.href = buildWhatsAppUrl("Hola, quiero cotizar neumáticos o llantas.");
+if (waSimulator) waSimulator.href = buildWhatsAppUrl("Hola, quiero consultar una medida específica.");
+if (waPatenteHero) waPatenteHero.href = buildWhatsAppUrl("Hola, quiero cotizar con mi patente.");
 
 categoryButtons.forEach((button) => {
   const category = button.dataset.category || "Productos";
@@ -62,15 +60,12 @@ categoryButtons.forEach((button) => {
 if (quoteForm) {
   quoteForm.addEventListener("submit", (event) => {
     event.preventDefault();
-
     if (!quoteForm.checkValidity()) {
       formFeedback.textContent = "Por favor completa todos los campos obligatorios antes de enviar.";
       formFeedback.style.color = "#d90429";
       return;
     }
-
-    formFeedback.textContent =
-      "Solicitud recibida. Te responderemos a la brevedad con una cotización formal.";
+    formFeedback.textContent = "Solicitud recibida. Te responderemos a la brevedad con una cotización formal.";
     formFeedback.style.color = "#0f5132";
     quoteForm.reset();
   });
@@ -85,71 +80,49 @@ const switchMode = (mode) => {
   });
 
   Object.entries(modeGroups).forEach(([groupMode, element]) => {
-    if (!element) return;
-    element.classList.toggle("hidden", groupMode !== mode);
+    if (element) element.classList.toggle("hidden", groupMode !== mode);
   });
 
   simResults.innerHTML = "";
   simFeedback.textContent = "";
 };
 
-modeButtons.forEach((button) => {
-  button.addEventListener("click", () => switchMode(button.dataset.mode));
-});
+modeButtons.forEach((button) => button.addEventListener("click", () => switchMode(button.dataset.mode)));
 
 const renderResults = (items, mode) => {
   if (!simResults) return;
-
   if (!items.length) {
-    simResults.innerHTML =
-      "<h3>Sin coincidencias en demo</h3><p>No encontramos resultados exactos en la muestra. Te recomendamos cotizar por WhatsApp para validar stock real y alternativas equivalentes.</p>";
+    simResults.innerHTML = "<h3>Sin coincidencias en demo</h3><p>Te recomendamos cotizar por WhatsApp para validar stock real y alternativas equivalentes.</p>";
     return;
   }
 
   if (mode === "neumatico") {
-    simResults.innerHTML = `
-      <h3>Coincidencias referenciales de neumáticos</h3>
-      <ul>
-        ${items
-          .map(
-            (item) =>
-              `<li><strong>${item.medida}</strong> · ${item.tipo} · ${item.uso}</li>`
-          )
-          .join("")}
-      </ul>
-    `;
+    simResults.innerHTML = `<h3>Coincidencias de neumáticos</h3><ul>${items
+      .map((i) => `<li><strong>${i.medida}</strong> · ${i.tipo} · ${i.uso}</li>`)
+      .join("")}</ul>`;
     return;
   }
 
   if (mode === "llanta") {
-    simResults.innerHTML = `
-      <h3>Coincidencias referenciales de llantas</h3>
-      <ul>
-        ${items
-          .map(
-            (item) =>
-              `<li><strong>Aro ${item.aro}</strong> · PCD ${item.pcd} · ${item.ancho}" · ${item.material}</li>`
-          )
-          .join("")}
-      </ul>
-    `;
+    simResults.innerHTML = `<h3>Coincidencias de llantas</h3><ul>${items
+      .map((i) => `<li><strong>Aro ${i.aro}</strong> · PCD ${i.pcd} · ${i.ancho}" · ${i.material}</li>`)
+      .join("")}</ul>`;
     return;
   }
 
-  simResults.innerHTML = `
-    <h3>Recomendación inicial por vehículo</h3>
-    <ul>
-      <li>Opciones sugeridas de neumáticos para tu configuración.</li>
-      <li>Alternativas HT/AT según uso urbano o mixto.</li>
-      <li>Validación final con asesor técnico antes de compra.</li>
-    </ul>
-  `;
+  if (mode === "patente") {
+    simResults.innerHTML = `<h3>Resultado por patente (referencial)</h3><ul>${items
+      .map((i) => `<li><strong>${i.vehiculo}</strong> · Medida común: ${i.medida} · Uso: ${i.uso}</li>`)
+      .join("")}</ul><p>Integración real con fuentes vehiculares de Chile: etapa futura.</p>`;
+    return;
+  }
+
+  simResults.innerHTML = "<h3>Recomendación inicial por vehículo</h3><ul><li>Opciones sugeridas según configuración.</li><li>Alternativas HT/AT según uso.</li><li>Validación final con asesor técnico.</li></ul>";
 };
 
 if (simulatorForm) {
   simulatorForm.addEventListener("submit", (event) => {
     event.preventDefault();
-
     let matches = [];
     let summary = "";
 
@@ -158,13 +131,11 @@ if (simulatorForm) {
       const brand = document.getElementById("sim-brand").value.trim();
       const model = document.getElementById("sim-model").value.trim();
       const trim = document.getElementById("sim-trim").value.trim();
-
       if (!year || !brand || !model) {
-        simFeedback.textContent = "Completa año, marca y modelo para buscar por vehículo.";
+        simFeedback.textContent = "Completa año, marca y modelo.";
         simFeedback.style.color = "#d90429";
         return;
       }
-
       summary = `Vehículo ${year} ${brand} ${model}${trim ? ` ${trim}` : ""}`;
       matches = [{ ok: true }];
     }
@@ -174,20 +145,13 @@ if (simulatorForm) {
       const profile = document.getElementById("sim-profile").value.trim();
       const diameter = document.getElementById("sim-diameter").value.trim();
       const terrain = document.getElementById("sim-terrain").value.trim().toUpperCase();
-
       if (!width || !profile || !diameter) {
-        simFeedback.textContent = "Completa ancho, perfil y aro para buscar neumáticos.";
+        simFeedback.textContent = "Completa ancho, perfil y aro.";
         simFeedback.style.color = "#d90429";
         return;
       }
-
       const expected = `${width}/${profile}R${diameter}`.toLowerCase();
-      matches = tireSamples.filter((item) => {
-        const tireOk = item.medida.toLowerCase() === expected;
-        const terrainOk = terrain ? item.tipo === terrain : true;
-        return tireOk && terrainOk;
-      });
-
+      matches = tireSamples.filter((item) => item.medida.toLowerCase() === expected && (!terrain || item.tipo === terrain));
       summary = `Neumático ${width}/${profile}R${diameter}${terrain ? ` ${terrain}` : ""}`;
     }
 
@@ -196,33 +160,33 @@ if (simulatorForm) {
       const pcd = document.getElementById("sim-pcd").value.trim().toLowerCase();
       const rimWidth = document.getElementById("sim-rim-width").value.trim();
       const material = document.getElementById("sim-material").value.trim();
-
       if (!rimDiameter || !pcd) {
-        simFeedback.textContent = "Completa aro y PCD para buscar llantas.";
+        simFeedback.textContent = "Completa aro y PCD.";
         simFeedback.style.color = "#d90429";
         return;
       }
+      matches = rimSamples.filter((item) => item.aro === rimDiameter && item.pcd.toLowerCase() === pcd && (!rimWidth || item.ancho === rimWidth) && (!material || item.material === material));
+      summary = `Llanta Aro ${rimDiameter} · ${pcd}${rimWidth ? ` · ${rimWidth}"` : ""}${material ? ` · ${material}` : ""}`;
+    }
 
-      matches = rimSamples.filter((item) => {
-        const aroOk = item.aro === rimDiameter;
-        const pcdOk = item.pcd.toLowerCase() === pcd;
-        const widthOk = rimWidth ? item.ancho === rimWidth : true;
-        const materialOk = material ? item.material === material : true;
-        return aroOk && pcdOk && widthOk && materialOk;
-      });
-
-      summary = `Llanta Aro ${rimDiameter} · ${pcd}${rimWidth ? ` · ${rimWidth}"` : ""}${
-        material ? ` · ${material}` : ""
-      }`;
+    if (activeMode === "patente") {
+      const plateRaw = document.getElementById("sim-plate").value.trim().toUpperCase().replace(/[^A-Z0-9]/g, "");
+      const plateUse = document.getElementById("sim-plate-use").value.trim();
+      if (!plateRaw || plateRaw.length < 6) {
+        simFeedback.textContent = "Ingresa una patente válida (ej: ABCD12).";
+        simFeedback.style.color = "#d90429";
+        return;
+      }
+      const plateData = plateSamples[plateRaw] || { vehiculo: "Vehículo no identificado en demo", medida: "Por confirmar", uso: plateUse || "No indicado" };
+      matches = [plateData];
+      summary = `Patente ${plateRaw}${plateUse ? ` · uso ${plateUse}` : ""}`;
     }
 
     simFeedback.textContent = `${summary}. Resultado demo generado.`;
     simFeedback.style.color = "#0f5132";
 
     if (waSimulator) {
-      waSimulator.href = buildWhatsAppUrl(
-        `Hola, quiero cotizar ${summary}. ¿Qué opciones disponibles tienen?`
-      );
+      waSimulator.href = buildWhatsAppUrl(`Hola, quiero cotizar ${summary}. ¿Qué opciones tienen disponibles?`);
     }
 
     renderResults(matches, activeMode);
