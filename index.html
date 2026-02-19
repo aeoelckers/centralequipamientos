@@ -40,6 +40,44 @@
       </div>
     </header>
 
+    <section class="quick-search-bar" aria-label="Barra de búsqueda rápida">
+      <div class="container">
+        <form id="top-quick-search" class="top-search-form" novalidate>
+          <div class="top-search-tabs" role="tablist" aria-label="Buscar por">
+            <button type="button" class="top-tab active" data-top-mode="neumatico">Neumáticos</button>
+            <button type="button" class="top-tab" data-top-mode="llanta">Llantas</button>
+            <button type="button" class="top-tab" data-top-mode="patente">Patente</button>
+          </div>
+
+          <div class="top-fields" id="top-fields-neumatico">
+            <input type="text" id="top-width" placeholder="Ancho" aria-label="Ancho" />
+            <input type="text" id="top-profile" placeholder="Perfil" aria-label="Perfil" />
+            <input type="text" id="top-diameter" placeholder="Aro" aria-label="Aro" />
+          </div>
+
+          <div class="top-fields hidden" id="top-fields-llanta">
+            <input type="text" id="top-rim" placeholder="Aro" aria-label="Aro de llanta" />
+            <input type="text" id="top-pcd" placeholder="PCD (5x139)" aria-label="PCD" />
+            <input type="text" id="top-rim-width" placeholder='Ancho (8")' aria-label="Ancho de llanta" />
+          </div>
+
+          <div class="top-fields hidden" id="top-fields-patente">
+            <input type="text" id="top-plate" placeholder="Patente (ABCD12)" aria-label="Patente" />
+            <select id="top-plate-use" aria-label="Uso del vehículo">
+              <option value="">Uso normal</option>
+              <option>Ciudad</option>
+              <option>Carretera</option>
+              <option>Mixto</option>
+              <option>Trabajo / carga</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary top-search-btn">Buscar y cotizar</button>
+        </form>
+      </div>
+    </section>
+
+
     <main>
       <section class="hero" id="inicio" aria-label="Portada">
         <div class="hero-overlay">

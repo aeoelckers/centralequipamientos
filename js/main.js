@@ -17,6 +17,15 @@ const simulatorForm = document.getElementById("search-simulator");
 const simFeedback = document.getElementById("sim-feedback");
 const simResults = document.getElementById("sim-results");
 const modeButtons = document.querySelectorAll(".mode-chip");
+
+const topQuickSearch = document.getElementById("top-quick-search");
+const topTabs = document.querySelectorAll(".top-tab");
+const topFieldGroups = {
+  neumatico: document.getElementById("top-fields-neumatico"),
+  llanta: document.getElementById("top-fields-llanta"),
+  patente: document.getElementById("top-fields-patente")
+};
+let activeTopMode = "neumatico";
 const modeGroups = {
   vehiculo: document.getElementById("group-vehiculo"),
   neumatico: document.getElementById("group-neumatico"),
@@ -88,6 +97,50 @@ const switchMode = (mode) => {
 };
 
 modeButtons.forEach((button) => button.addEventListener("click", () => switchMode(button.dataset.mode)));
+
+
+const switchTopMode = (mode) => {
+  activeTopMode = mode;
+  topTabs.forEach((button) => {
+    const selected = button.dataset.topMode === mode;
+    button.classList.toggle("active", selected);
+  });
+  Object.entries(topFieldGroups).forEach(([k, el]) => {
+    if (el) el.classList.toggle("hidden", k !== mode);
+  });
+};
+
+topTabs.forEach((button) => button.addEventListener("click", () => switchTopMode(button.dataset.topMode)));
+
+if (topQuickSearch) {
+  topQuickSearch.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (activeTopMode === "neumatico") {
+      switchMode("neumatico");
+      document.getElementById("sim-width").value = document.getElementById("top-width").value.trim();
+      document.getElementById("sim-profile").value = document.getElementById("top-profile").value.trim();
+      document.getElementById("sim-diameter").value = document.getElementById("top-diameter").value.trim();
+    }
+
+    if (activeTopMode === "llanta") {
+      switchMode("llanta");
+      document.getElementById("sim-rim-diameter").value = document.getElementById("top-rim").value.trim();
+      document.getElementById("sim-pcd").value = document.getElementById("top-pcd").value.trim();
+      document.getElementById("sim-rim-width").value = document.getElementById("top-rim-width").value.trim();
+    }
+
+    if (activeTopMode === "patente") {
+      switchMode("patente");
+      document.getElementById("sim-plate").value = document.getElementById("top-plate").value.trim();
+      document.getElementById("sim-plate-use").value = document.getElementById("top-plate-use").value;
+    }
+
+    const target = document.getElementById("simulador");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (simulatorForm) simulatorForm.requestSubmit();
+  });
+}
 
 const renderResults = (items, mode) => {
   if (!simResults) return;
