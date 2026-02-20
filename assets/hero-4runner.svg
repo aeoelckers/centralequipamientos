@@ -1,0 +1,29 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SUV estilo 4Runner en ruta">
+  <defs>
+    <linearGradient id="sky1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#18324f"/>
+      <stop offset="100%" stop-color="#5a86b6"/>
+    </linearGradient>
+    <linearGradient id="road1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a313d"/>
+      <stop offset="100%" stop-color="#12161d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky1)"/>
+  <polygon points="0,610 1600,540 1600,900 0,900" fill="url(#road1)"/>
+  <g opacity="0.25" fill="#23456c">
+    <path d="M0 520 L220 430 L420 500 L620 420 L860 500 L1130 420 L1360 500 L1600 430 L1600 620 L0 620 Z"/>
+  </g>
+
+  <g transform="translate(290 360)">
+    <rect x="120" y="200" width="830" height="150" rx="28" fill="#f2f6fc"/>
+    <path d="M250 200 L390 105 H690 L840 200 Z" fill="#e6edf8"/>
+    <rect x="455" y="122" width="215" height="62" rx="10" fill="#6b85a8"/>
+    <rect x="145" y="244" width="95" height="26" rx="8" fill="#0a84ff"/>
+    <rect x="855" y="244" width="80" height="26" rx="8" fill="#d90429"/>
+    <circle cx="295" cy="382" r="82" fill="#090b10"/>
+    <circle cx="295" cy="382" r="34" fill="#879cb8"/>
+    <circle cx="780" cy="382" r="82" fill="#090b10"/>
+    <circle cx="780" cy="382" r="34" fill="#879cb8"/>
+  </g>
+</svg>

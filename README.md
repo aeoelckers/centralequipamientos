@@ -7,14 +7,14 @@ Sitio web corporativo en español (Chile) para **Central Equipamientos**, orient
 - `index.html`: estructura semántica del sitio.
 - `css/styles.css`: estilos visuales, grilla responsive y paleta corporativa.
 - `js/main.js`: interacciones, enlaces WhatsApp configurables, buscador demo y validación de formulario.
-- `assets/hero-camioneta.svg`: imagen local del hero para evitar fallas de carga externas.
+- `assets/hero-4runner.svg`, `assets/hero-prado.svg`, `assets/hero-landcruiser.svg`: imágenes locales del hero para evitar fallas de carga externas.
 - `assets/`: carpeta reservada para imágenes/logotipos futuras.
 - `.github/workflows/deploy-pages.yml`: despliegue automático en GitHub Pages.
 
 ## Características incluidas
 
 - Diseño sobrio, moderno y tecnológico con enfoque automotriz.
-- Hero con imagen local + panel flotante de “Cotiza en 3 pasos”.
+- Hero con rotación de imágenes 4x4 (estilo 4Runner/Prado/Land Cruiser) + panel flotante de “Cotiza en 3 pasos”.
 - Barra de búsqueda rápida bajo el menú superior (tipo neumático/llanta/patente) para cotizar con menos clics, optimizada para celular.
 - **Buscador rápido en 4 modos**:
   - Por vehículo.

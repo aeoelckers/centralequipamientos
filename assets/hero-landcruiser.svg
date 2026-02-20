@@ -1,0 +1,26 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SUV estilo Land Cruiser en carretera">
+  <defs>
+    <linearGradient id="sky3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f3553"/>
+      <stop offset="100%" stop-color="#6c95c2"/>
+    </linearGradient>
+    <linearGradient id="road3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2f39"/>
+      <stop offset="100%" stop-color="#0f131a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky3)"/>
+  <polygon points="0,620 1600,550 1600,900 0,900" fill="url(#road3)"/>
+
+  <g transform="translate(280 350)">
+    <rect x="120" y="210" width="850" height="150" rx="30" fill="#f5f8fd"/>
+    <path d="M255 210 L400 108 H710 L890 210 Z" fill="#e3ebf7"/>
+    <rect x="485" y="127" width="215" height="62" rx="10" fill="#6f89aa"/>
+    <rect x="145" y="252" width="88" height="24" rx="6" fill="#0a84ff"/>
+    <rect x="896" y="252" width="74" height="24" rx="6" fill="#d90429"/>
+    <circle cx="305" cy="392" r="82" fill="#0a0d13"/>
+    <circle cx="305" cy="392" r="35" fill="#8ea5c0"/>
+    <circle cx="790" cy="392" r="82" fill="#0a0d13"/>
+    <circle cx="790" cy="392" r="35" fill="#8ea5c0"/>
+  </g>
+</svg>

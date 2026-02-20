@@ -93,7 +93,15 @@ img { max-width: 100%; border-radius: .75rem; display: block; }
   display: none;
 }
 
-.hero { min-height: 84vh; background: url("../assets/hero-camioneta.svg") center/cover no-repeat; }
+.hero { min-height: 84vh; background: url("../assets/hero-4runner.svg") center/cover no-repeat;
+  animation: heroSlideshow 18s infinite; }
+
+
+@keyframes heroSlideshow {
+  0%, 30% { background-image: url("../assets/hero-4runner.svg"); }
+  33%, 63% { background-image: url("../assets/hero-prado.svg"); }
+  66%, 100% { background-image: url("../assets/hero-landcruiser.svg"); }
+}
 .hero-overlay { min-height: 84vh; background: linear-gradient(95deg, rgba(8,10,16,.62), rgba(8,10,16,.18)); display:flex; align-items:center; }
 .hero-layout { display:grid; grid-template-columns: 1.4fr .95fr; gap:1.2rem; align-items:center; }
 .hero-content { color:#fff; max-width: 690px; }
@@ -153,6 +161,7 @@ h1 { font-size: clamp(2rem,4.4vw,3.8rem); margin-bottom:.55rem; }
 }
 
 @media (max-width: 700px) {
+  .hero { animation: none; background-image: url("../assets/hero-prado.svg"); }
   .quick-search-bar {
     position: static;
     top: auto;
