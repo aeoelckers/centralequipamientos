@@ -1,0 +1,26 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SUV estilo Prado en camino">
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2c3f5e"/>
+      <stop offset="100%" stop-color="#84a6d0"/>
+    </linearGradient>
+    <linearGradient id="road2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#313844"/>
+      <stop offset="100%" stop-color="#131821"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky2)"/>
+  <polygon points="0,630 1600,565 1600,900 0,900" fill="url(#road2)"/>
+
+  <g transform="translate(260 345)">
+    <rect x="130" y="220" width="860" height="145" rx="30" fill="#f7fafc"/>
+    <path d="M280 220 L430 118 H730 L900 220 Z" fill="#e4ecf7"/>
+    <rect x="500" y="136" width="200" height="66" rx="10" fill="#708cae"/>
+    <rect x="160" y="258" width="88" height="24" rx="6" fill="#d90429"/>
+    <rect x="920" y="258" width="62" height="24" rx="6" fill="#0a84ff"/>
+    <circle cx="320" cy="398" r="80" fill="#0c0f15"/>
+    <circle cx="320" cy="398" r="35" fill="#91a6c1"/>
+    <circle cx="810" cy="398" r="80" fill="#0c0f15"/>
+    <circle cx="810" cy="398" r="35" fill="#91a6c1"/>
+  </g>
+</svg>
